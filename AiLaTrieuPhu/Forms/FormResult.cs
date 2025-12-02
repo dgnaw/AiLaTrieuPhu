@@ -63,5 +63,48 @@ namespace AiLaTrieuPhu
         {
 
         }
+
+        private void btnLuuDiem_Click(object sender, EventArgs e)
+        {
+            grpNhapTen.Visible = true; // Hiện khung nhập lên
+            txtTen.Focus();
+        }
+
+        private void btnXacNhan_Click(object sender, EventArgs e)
+        {
+            //if (txtTen.Text == "") return;
+
+            //string ten = txtTen.Text;
+
+            //// Lấy tiền (Xử lý chuỗi để bỏ chữ "Tiền thưởng: " đi cho gọn)
+            //string tien = lblTienThuong.Text.Replace("Tiền thưởng: ", "");
+
+            //// Lấy thời gian (Bỏ chữ "Tổng thời gian: " và " giây")
+            //// Lưu ý: Đoạn này phải khớp với cách bạn viết ở FormResult
+            //// Ví dụ text là: "Tổng thời gian: 20 giây"
+            //string tgStr = lblThoiGian.Text;
+            //tgStr = tgStr.Replace("Tổng thời gian: ", "").Replace(" giây", "").Trim();
+
+            //// Viết câu lệnh SQL Insert
+            //string sql = "INSERT INTO tblLichSu (HoTen, TienThuong, ThoiGian, NgayChoi) " +
+            //             "VALUES (N'" + ten + "', N'" + tien + "', " + tgStr + ", GETDATE())";
+
+            //// Gọi hàm thực thi
+            //C_KetNoi.thucHienLenh(sql);
+
+            //MessageBox.Show("Đã lưu thành tích!");
+
+            //// Ẩn đi để không lưu nhiều lần
+            //grpNhapTen.Visible = false;
+            //btnLuuDiem.Enabled = false;
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            txtTen.Text = "";
+
+            // 2. Ẩn khung nhập tên đi
+            grpNhapTen.Visible = false;
+        }
     }
 }

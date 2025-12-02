@@ -13,7 +13,7 @@ namespace AiLaTrieuPhu
 
         public static void ketNoi()
         {
-            string chuoiKetNoi = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Data\CauHoiAiLaTrieuPhu.accdb";
+            string chuoiKetNoi = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Data\cauhoi.accdb";
             con = new OleDbConnection(chuoiKetNoi);
             con.Open();
 
@@ -21,7 +21,7 @@ namespace AiLaTrieuPhu
 
         public static void dongKetNoi()
         {
-            string chuoiKetNoi = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Data\CauHoiAiLaTrieuPhu.accdb";
+            string chuoiKetNoi = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Data\cauhoi.accdb";
             con = new OleDbConnection(chuoiKetNoi);
             //đóng kết nối
             con.Close();

@@ -68,6 +68,7 @@
             this.tmChoiNgay = new System.Windows.Forms.Timer(this.components);
             this.tmDemGio = new System.Windows.Forms.Timer(this.components);
             this.ptbKinhLup = new System.Windows.Forms.Button();
+            this.ptbKhien = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btA
@@ -492,12 +493,26 @@
             this.ptbKinhLup.UseVisualStyleBackColor = false;
             this.ptbKinhLup.Click += new System.EventHandler(this.btnKinhLup_Click);
             // 
+            // ptbKhien
+            // 
+            this.ptbKhien.BackColor = System.Drawing.Color.Transparent;
+            this.ptbKhien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ptbKhien.Image = global::AiLaTrieuPhu.Properties.Resources.shield;
+            this.ptbKhien.Location = new System.Drawing.Point(13, 140);
+            this.ptbKhien.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbKhien.Name = "ptbKhien";
+            this.ptbKhien.Size = new System.Drawing.Size(100, 43);
+            this.ptbKhien.TabIndex = 31;
+            this.ptbKhien.UseVisualStyleBackColor = false;
+            this.ptbKhien.Click += new System.EventHandler(this.ptbKhien_Click);
+            // 
             // FmChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1199, 704);
+            this.Controls.Add(this.ptbKhien);
             this.Controls.Add(this.ptbKinhLup);
             this.Controls.Add(this.btDung);
             this.Controls.Add(this.bt5050);
@@ -580,6 +595,7 @@
         private System.Windows.Forms.Timer tmChoiNgay;
         private System.Windows.Forms.Timer tmDemGio;
         private System.Windows.Forms.Button ptbKinhLup;
+        private System.Windows.Forms.Button ptbKhien;
     }
 }
 

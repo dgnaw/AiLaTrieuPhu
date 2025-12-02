@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AiLaTrieuPhu
@@ -19,6 +20,7 @@ namespace AiLaTrieuPhu
 
         private int bang = 1, c = 0;
         private int tongThoiGian = 0;
+        private bool cheDoBaoVe = false;
         int cs = 0;
         int[] MangRandom = new int[5];
         bool ok = true;
@@ -40,38 +42,72 @@ namespace AiLaTrieuPhu
 
             ptbKinhLup.Visible = true;
             ptbKinhLup.Enabled = true;
+
+            // Reset biến cờ
+            cheDoBaoVe = false;
+
+            // Hiện lại nút
+            ptbKhien.Visible = true;
+            ptbKhien.Enabled = true;
         }
 
-        private void btA_Click_1(object sender, EventArgs e)
+        private async void btA_Click_1(object sender, EventArgs e)
         {
             if (ok)
             {
                 ok = false;
-                //đổi màu nút bấm A và label
+                // ... (đoạn đổi màu cam và tắt các nút khác giữ nguyên) ...
                 btA.BackColor = Color.Orange;
                 lbA.BackColor = Color.Orange;
+                btB.Enabled = false; btC.Enabled = false; btD.Enabled = false;
 
-                btB.Enabled = false;
-                btC.Enabled = false;
-                btD.Enabled = false;
+                await Task.Delay(2000);
 
-                //Bây giờ là lúc tôi đưa ra câu trả lời đúng
-                C_AmThanh.batAmThanh("answer_t");
-
-                //nếu trả lời đúng thì chuyển câu
+                // KIỂM TRA ĐÚNG SAI
                 if (String.Equals(C_KetNoi.layDuLieu("SELECT DapAn FROM tbl" + bang.ToString(), "DapAn", i), "A"))
                 {
+                    // --- TRẢ LỜI ĐÚNG ---
+                    // Nếu dùng khiên mà trả lời đúng thì coi như phí khiên (tắt chế độ bảo vệ đi)
+                    cheDoBaoVe = false;
+
                     tmTraLoiDung.Enabled = true;
                     tmChuyenCau.Enabled = true;
-                }//ngược lại thì tìm đáp án đúng
+                }
                 else
                 {
-                    tmTimDapAn.Enabled = true;
+                    // --- TRẢ LỜI SAI (SỬA Ở ĐÂY) ---
+
+                    if (cheDoBaoVe == true) // Nếu đang có khiên
+                    {
+                        // 1. Tắt khiên đi (đã dùng xong)
+                        cheDoBaoVe = false;
+
+                        // 2. Thông báo cứu mạng
+                        MessageBox.Show("Đáp án A là SAI! Nhưng bạn đã được Khiên bảo vệ cứu.\nHãy chọn lại đáp án khác!");
+
+                        // 3. Vô hiệu hóa đáp án sai này (để ko bấm lại nữa)
+                        btA.BackColor = Color.Gray; // Đổi màu xám cho biết là sai
+                        btA.Enabled = false;
+
+                        // 4. MỞ LẠI các nút khác để người chơi chọn lại
+                        // (Vì ở đầu hàm mình đã lỡ khóa nó rồi, giờ phải mở ra)
+                        if (btB.Text != "") btB.Enabled = true; // Kiểm tra != "" để tránh mở lại nút 50/50 đã xóa
+                        if (btC.Text != "") btC.Enabled = true;
+                        if (btD.Text != "") btD.Enabled = true;
+
+                        // 5. Cho phép bấm tiếp
+                        ok = true;
+                    }
+                    else
+                    {
+                        // Nếu KHÔNG có khiên -> Thua thật
+                        tmTimDapAn.Enabled = true;
+                    }
                 }
             }
         }
 
-        private void btB_Click(object sender, EventArgs e)
+        private async void btB_Click(object sender, EventArgs e)
         {
             if (ok)
             {
@@ -85,23 +121,52 @@ namespace AiLaTrieuPhu
                 btD.Enabled = false;
 
                 //Bây giờ là lúc tôi đưa ra câu trả lời đúng
-                C_AmThanh.batAmThanh("answer_t");
+                await Task.Delay(2000);
 
-                //nếu trả lời đúng thì chuyển câu
                 if (String.Equals(C_KetNoi.layDuLieu("SELECT DapAn FROM tbl" + bang.ToString(), "DapAn", i), "B"))
                 {
+                    // --- TRẢ LỜI ĐÚNG ---
+                    // Nếu dùng khiên mà trả lời đúng thì coi như phí khiên (tắt chế độ bảo vệ đi)
+                    cheDoBaoVe = false;
+
                     tmTraLoiDung.Enabled = true;
                     tmChuyenCau.Enabled = true;
                 }
-                //ngược lại thì tìm đáp án đúng
                 else
                 {
-                    tmTimDapAn.Enabled = true;
+                    // --- TRẢ LỜI SAI (SỬA Ở ĐÂY) ---
+
+                    if (cheDoBaoVe == true) // Nếu đang có khiên
+                    {
+                        // 1. Tắt khiên đi (đã dùng xong)
+                        cheDoBaoVe = false;
+
+                        // 2. Thông báo cứu mạng
+                        MessageBox.Show("Đáp án B là SAI! Nhưng bạn đã được Khiên bảo vệ cứu.\nHãy chọn lại đáp án khác!");
+
+                        // 3. Vô hiệu hóa đáp án sai này (để ko bấm lại nữa)
+                        btB.BackColor = Color.Gray; // Đổi màu xám cho biết là sai
+                        btB.Enabled = false;
+
+                        // 4. MỞ LẠI các nút khác để người chơi chọn lại
+                        // (Vì ở đầu hàm mình đã lỡ khóa nó rồi, giờ phải mở ra)
+                        if (btA.Text != "") btA.Enabled = true; // Kiểm tra != "" để tránh mở lại nút 50/50 đã xóa
+                        if (btC.Text != "") btC.Enabled = true;
+                        if (btD.Text != "") btD.Enabled = true;
+
+                        // 5. Cho phép bấm tiếp
+                        ok = true;
+                    }
+                    else
+                    {
+                        // Nếu KHÔNG có khiên -> Thua thật
+                        tmTimDapAn.Enabled = true;
+                    }
                 }
             }
         }
 
-        private void btC_Click(object sender, EventArgs e)
+        private async void btC_Click(object sender, EventArgs e)
         {
             if (ok)
             {
@@ -115,23 +180,53 @@ namespace AiLaTrieuPhu
                 btD.Enabled = false;
 
                 //Bây giờ là lúc tôi đưa ra câu trả lời đúng
-                C_AmThanh.batAmThanh("answer_t");
+                await Task.Delay(2000);
 
                 //nếu trả lời đúng thì chuyển câu
                 if (String.Equals(C_KetNoi.layDuLieu("SELECT DapAn FROM tbl" + bang.ToString(), "DapAn", i), "C"))
                 {
+                    // --- TRẢ LỜI ĐÚNG ---
+                    // Nếu dùng khiên mà trả lời đúng thì coi như phí khiên (tắt chế độ bảo vệ đi)
+                    cheDoBaoVe = false;
+
                     tmTraLoiDung.Enabled = true;
                     tmChuyenCau.Enabled = true;
                 }
-                //ngược lại thì tìm đáp án đúng
                 else
                 {
-                    tmTimDapAn.Enabled = true;
+                    // --- TRẢ LỜI SAI (SỬA Ở ĐÂY) ---
+
+                    if (cheDoBaoVe == true) // Nếu đang có khiên
+                    {
+                        // 1. Tắt khiên đi (đã dùng xong)
+                        cheDoBaoVe = false;
+
+                        // 2. Thông báo cứu mạng
+                        MessageBox.Show("Đáp án A là SAI! Nhưng bạn đã được Khiên bảo vệ cứu.\nHãy chọn lại đáp án khác!");
+
+                        // 3. Vô hiệu hóa đáp án sai này (để ko bấm lại nữa)
+                        btC.BackColor = Color.Gray; // Đổi màu xám cho biết là sai
+                        btC.Enabled = false;
+
+                        // 4. MỞ LẠI các nút khác để người chơi chọn lại
+                        // (Vì ở đầu hàm mình đã lỡ khóa nó rồi, giờ phải mở ra)
+                        if (btA.Text != "") btA.Enabled = true; // Kiểm tra != "" để tránh mở lại nút 50/50 đã xóa
+                        if (btB.Text != "") btB.Enabled = true;
+                        if (btD.Text != "") btD.Enabled = true;
+
+                        // 5. Cho phép bấm tiếp
+                        ok = true;
+                    }
+                    else
+                    {
+                        // Nếu KHÔNG có khiên -> Thua thật
+                        tmTimDapAn.Enabled = true;
+                    }
                 }
             }
         }
 
-        private void btD_Click(object sender, EventArgs e)
+        private async void btD_Click(object sender, EventArgs e)
         {
             if (ok)
             {
@@ -145,19 +240,48 @@ namespace AiLaTrieuPhu
                 btC.Enabled = false;
 
                 //Bây giờ là lúc tôi đưa ra câu trả lời đúng
-                C_AmThanh.batAmThanh("answer_t");
+                await Task.Delay(2000);
 
                 //nếu trả lời đúng thì chuyển câu
                 if (String.Equals(C_KetNoi.layDuLieu("SELECT DapAn FROM tbl" + bang.ToString(), "DapAn", i), "D"))
                 {
+                    // --- TRẢ LỜI ĐÚNG ---
+                    // Nếu dùng khiên mà trả lời đúng thì coi như phí khiên (tắt chế độ bảo vệ đi)
+                    cheDoBaoVe = false;
 
                     tmTraLoiDung.Enabled = true;
                     tmChuyenCau.Enabled = true;
                 }
-                //ngược lại thì tìm đáp án đúng
                 else
                 {
-                    tmTimDapAn.Enabled = true;
+                    // --- TRẢ LỜI SAI (SỬA Ở ĐÂY) ---
+
+                    if (cheDoBaoVe == true) // Nếu đang có khiên
+                    {
+                        // 1. Tắt khiên đi (đã dùng xong)
+                        cheDoBaoVe = false;
+
+                        // 2. Thông báo cứu mạng
+                        MessageBox.Show("Đáp án D là SAI! Nhưng bạn đã được Khiên bảo vệ cứu.\nHãy chọn lại đáp án khác!");
+
+                        // 3. Vô hiệu hóa đáp án sai này (để ko bấm lại nữa)
+                        btD.BackColor = Color.Gray; // Đổi màu xám cho biết là sai
+                        btD.Enabled = false;
+
+                        // 4. MỞ LẠI các nút khác để người chơi chọn lại
+                        // (Vì ở đầu hàm mình đã lỡ khóa nó rồi, giờ phải mở ra)
+                        if (btA.Text != "") btA.Enabled = true; // Kiểm tra != "" để tránh mở lại nút 50/50 đã xóa
+                        if (btB.Text != "") btB.Enabled = true;
+                        if (btC.Text != "") btC.Enabled = true;
+
+                        // 5. Cho phép bấm tiếp
+                        ok = true;
+                    }
+                    else
+                    {
+                        // Nếu KHÔNG có khiên -> Thua thật
+                        tmTimDapAn.Enabled = true;
+                    }
                 }
             }
         }
@@ -739,6 +863,13 @@ namespace AiLaTrieuPhu
             ptbKinhLup.Visible = true;
             ptbKinhLup.Enabled = true;
 
+            // Reset biến cờ
+            cheDoBaoVe = false;
+
+            // Hiện lại nút
+            ptbKhien.Visible = true;
+            ptbKhien.Enabled = true;
+
             btA.Enabled = true;
             btB.Enabled = true;
             btC.Enabled = true;
@@ -910,6 +1041,13 @@ namespace AiLaTrieuPhu
             ptbKinhLup.Visible = true;
             ptbKinhLup.Enabled = true;
 
+            // Reset biến cờ
+            cheDoBaoVe = false;
+
+            // Hiện lại nút
+            ptbKhien.Visible = true;
+            ptbKhien.Enabled = true;
+
             btA.Enabled = true;
             btB.Enabled = true;
             btC.Enabled = true;
@@ -988,6 +1126,27 @@ namespace AiLaTrieuPhu
 
             // 6. Bật timer chuyển câu để tự động sang câu mới sau vài giây
             tmChuyenCau.Enabled = true;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ptbKhien_Click(object sender, EventArgs e)
+        {
+            C_AmThanh.tatAmThanh();
+
+            // 2. Kích hoạt chế độ bảo vệ
+            cheDoBaoVe = true;
+
+            // 3. Ẩn nút khiên đi (chỉ dùng 1 lần)
+            ptbKhien.Enabled = false;
+            ptbKhien.Visible = false;
+
+            // 4. Có thể thêm âm thanh kích hoạt khiên ở đây
+            // C_AmThanh.batAmThanh("sound_active_shield");
+            MessageBox.Show("Khiên bảo vệ đã được kích hoạt!\nNếu bạn chọn sai, bạn sẽ có thêm 1 cơ hội nữa.");
         }
 
         // Hàm này tính tiền dựa trên câu đang chơi (biến c)

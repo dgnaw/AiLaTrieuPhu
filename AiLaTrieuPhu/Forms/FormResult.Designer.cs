@@ -112,7 +112,7 @@
             this.grpNhapTen.Controls.Add(this.btnXacNhan);
             this.grpNhapTen.Controls.Add(this.btnHuy);
             this.grpNhapTen.Controls.Add(this.txtTen);
-            this.grpNhapTen.Location = new System.Drawing.Point(126, 95);
+            this.grpNhapTen.Location = new System.Drawing.Point(138, 97);
             this.grpNhapTen.Name = "grpNhapTen";
             this.grpNhapTen.Size = new System.Drawing.Size(371, 187);
             this.grpNhapTen.TabIndex = 7;

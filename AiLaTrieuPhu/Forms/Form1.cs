@@ -37,6 +37,9 @@ namespace AiLaTrieuPhu
             // 3. Nếu lần đầu vào game mà câu hỏi chưa hiện, bạn có thể kích hoạt nó luôn ở đây
             // (Nếu game của bạn đã tự hiện câu hỏi rồi thì bỏ qua dòng dưới này)
             tmChuyenCau.Enabled = true;
+
+            ptbKinhLup.Visible = true;
+            ptbKinhLup.Enabled = true;
         }
 
         private void btA_Click_1(object sender, EventArgs e)
@@ -733,6 +736,9 @@ namespace AiLaTrieuPhu
             bt5050.Enabled = true;
             btDung.Enabled = true;
 
+            ptbKinhLup.Visible = true;
+            ptbKinhLup.Enabled = true;
+
             btA.Enabled = true;
             btB.Enabled = true;
             btC.Enabled = true;
@@ -749,11 +755,11 @@ namespace AiLaTrieuPhu
         //trợ giúp 50 50
         private void bt5050_Click(object sender, EventArgs e)
         {
-            C_AmThanh.batAmThanh("sound_trogiup_50_50");
-
+            C_AmThanh.tatAmThanh();
             tm5050.Enabled = true;
 
             bt5050.Enabled = false;
+            bt5050.Visible = false;
         }
 
         //trợ giúp dừng chơi
@@ -833,12 +839,6 @@ namespace AiLaTrieuPhu
         }
 
 
-        //dê chuột vào trợ giúp 50, 50
-        private void bt5050_MouseHover(object sender, EventArgs e)
-        {
-            C_AmThanh.batAmThanh("sound_chon_50_50");
-        }
-
         //sau khi thua cuộc
         private void tmThuaCuoc_Tick(object sender, EventArgs e)
         {
@@ -907,6 +907,9 @@ namespace AiLaTrieuPhu
             bt5050.Enabled = true;
             btDung.Enabled = true;
 
+            ptbKinhLup.Visible = true;
+            ptbKinhLup.Enabled = true;
+
             btA.Enabled = true;
             btB.Enabled = true;
             btC.Enabled = true;
@@ -930,6 +933,61 @@ namespace AiLaTrieuPhu
         private void tmDemGio_Tick(object sender, EventArgs e)
         {
             tongThoiGian++;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnKinhLup_Click(object sender, EventArgs e)
+        {
+            tmCauHoi.Enabled = false;
+            C_AmThanh.tatAmThanh();
+            // 1. Khóa và ẩn trợ giúp này đi để không dùng lại được
+            ptbKinhLup.Enabled = false;
+            ptbKinhLup.Visible = false; // Ẩn đi cho "mất" như bạn yêu cầu
+
+            // Có thể thêm âm thanh khi chọn trợ giúp nếu muốn
+            // C_AmThanh.batAmThanh("sound_chon_kinh_lup");
+
+            // 2. Khóa các tương tác khác để tránh lỗi
+            ok = false; // Khóa biến cờ cho phép bấm nút
+            btA.Enabled = false; btB.Enabled = false;
+            btC.Enabled = false; btD.Enabled = false;
+
+            // 3. Lấy đáp án đúng từ CSDL
+            string dapAnDung = C_KetNoi.layDuLieu("SELECT DapAn FROM tbl" + bang.ToString(), "DapAn", i);
+
+            // 4. So sánh và đổi màu đáp án đúng sang màu xanh (LimeGreen) ngay lập tức
+            if (dapAnDung == "A")
+            {
+                btA.BackColor = Color.LimeGreen;
+                lbA.BackColor = Color.LimeGreen;
+            }
+            else if (dapAnDung == "B")
+            {
+                btB.BackColor = Color.LimeGreen;
+                lbB.BackColor = Color.LimeGreen;
+            }
+            else if (dapAnDung == "C")
+            {
+                btC.BackColor = Color.LimeGreen;
+                lbC.BackColor = Color.LimeGreen;
+            }
+            else if (dapAnDung == "D")
+            {
+                btD.BackColor = Color.LimeGreen;
+                lbD.BackColor = Color.LimeGreen;
+            }
+
+            // 5. Bật âm thanh trả lời đúng
+            C_AmThanh.batAmThanh("bgmusic_answer_t");
+
+            tmChuyenCau.Interval = 2000;
+
+            // 6. Bật timer chuyển câu để tự động sang câu mới sau vài giây
+            tmChuyenCau.Enabled = true;
         }
 
         // Hàm này tính tiền dựa trên câu đang chơi (biến c)

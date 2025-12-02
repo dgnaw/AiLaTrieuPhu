@@ -52,9 +52,10 @@
             this.btBatDau.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btBatDau.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btBatDau.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.btBatDau.Location = new System.Drawing.Point(247, 310);
+            this.btBatDau.Location = new System.Drawing.Point(329, 382);
+            this.btBatDau.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btBatDau.Name = "btBatDau";
-            this.btBatDau.Size = new System.Drawing.Size(200, 60);
+            this.btBatDau.Size = new System.Drawing.Size(267, 74);
             this.btBatDau.TabIndex = 25;
             this.btBatDau.Text = "CHƠI NGAY";
             this.btBatDau.UseVisualStyleBackColor = false;
@@ -70,34 +71,37 @@
             this.btSanSang.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btSanSang.ForeColor = System.Drawing.Color.Lime;
             this.btSanSang.Image = ((System.Drawing.Image)(resources.GetObject("btSanSang.Image")));
-            this.btSanSang.Location = new System.Drawing.Point(247, 310);
+            this.btSanSang.Location = new System.Drawing.Point(329, 382);
+            this.btSanSang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btSanSang.Name = "btSanSang";
-            this.btSanSang.Size = new System.Drawing.Size(200, 60);
+            this.btSanSang.Size = new System.Drawing.Size(267, 74);
             this.btSanSang.TabIndex = 24;
-            this.btSanSang.Text = "TÔI SẴNG SÀNG";
+            this.btSanSang.Text = "TÔI SẴN SÀNG";
             this.btSanSang.UseVisualStyleBackColor = false;
             this.btSanSang.Click += new System.EventHandler(this.btSanSang_Click);
             // 
             // ptbKhoiDong
             // 
             this.ptbKhoiDong.Image = global::AiLaTrieuPhu.Properties.Resources.nenPlay;
-            this.ptbKhoiDong.Location = new System.Drawing.Point(-1, -18);
+            this.ptbKhoiDong.Location = new System.Drawing.Point(-1, -22);
+            this.ptbKhoiDong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ptbKhoiDong.Name = "ptbKhoiDong";
-            this.ptbKhoiDong.Size = new System.Drawing.Size(685, 431);
+            this.ptbKhoiDong.Size = new System.Drawing.Size(913, 530);
             this.ptbKhoiDong.TabIndex = 23;
             this.ptbKhoiDong.TabStop = false;
             this.ptbKhoiDong.Click += new System.EventHandler(this.ptbKhoiDong_Click);
             // 
             // FmKhoiDong
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 412);
+            this.ClientSize = new System.Drawing.Size(912, 507);
             this.Controls.Add(this.btBatDau);
             this.Controls.Add(this.btSanSang);
             this.Controls.Add(this.ptbKhoiDong);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "FmKhoiDong";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

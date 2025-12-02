@@ -67,6 +67,7 @@
             this.tmThuaCuoc = new System.Windows.Forms.Timer(this.components);
             this.tmChoiNgay = new System.Windows.Forms.Timer(this.components);
             this.tmDemGio = new System.Windows.Forms.Timer(this.components);
+            this.ptbKinhLup = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btA
@@ -392,7 +393,7 @@
             // 
             // bt5050
             // 
-            this.bt5050.BackColor = System.Drawing.Color.SteelBlue;
+            this.bt5050.BackColor = System.Drawing.Color.Transparent;
             this.bt5050.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt5050.Image = ((System.Drawing.Image)(resources.GetObject("bt5050.Image")));
             this.bt5050.Location = new System.Drawing.Point(13, 13);
@@ -402,7 +403,6 @@
             this.bt5050.TabIndex = 28;
             this.bt5050.UseVisualStyleBackColor = false;
             this.bt5050.Click += new System.EventHandler(this.bt5050_Click);
-            this.bt5050.MouseHover += new System.EventHandler(this.bt5050_MouseHover);
             // 
             // btDung
             // 
@@ -438,7 +438,7 @@
             // 
             // tm5050
             // 
-            this.tm5050.Interval = 3000;
+            this.tm5050.Interval = 1000;
             this.tm5050.Tick += new System.EventHandler(this.tm5050_Tick);
             // 
             // tmCauHoi
@@ -479,12 +479,26 @@
             this.tmDemGio.Interval = 1000;
             this.tmDemGio.Tick += new System.EventHandler(this.tmDemGio_Tick);
             // 
+            // ptbKinhLup
+            // 
+            this.ptbKinhLup.BackColor = System.Drawing.Color.Transparent;
+            this.ptbKinhLup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ptbKinhLup.Image = global::AiLaTrieuPhu.Properties.Resources.search;
+            this.ptbKinhLup.Location = new System.Drawing.Point(13, 76);
+            this.ptbKinhLup.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbKinhLup.Name = "ptbKinhLup";
+            this.ptbKinhLup.Size = new System.Drawing.Size(100, 43);
+            this.ptbKinhLup.TabIndex = 30;
+            this.ptbKinhLup.UseVisualStyleBackColor = false;
+            this.ptbKinhLup.Click += new System.EventHandler(this.btnKinhLup_Click);
+            // 
             // FmChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1199, 704);
+            this.Controls.Add(this.ptbKinhLup);
             this.Controls.Add(this.btDung);
             this.Controls.Add(this.bt5050);
             this.Controls.Add(this.lb15);
@@ -565,6 +579,7 @@
         private System.Windows.Forms.Timer tmThuaCuoc;
         private System.Windows.Forms.Timer tmChoiNgay;
         private System.Windows.Forms.Timer tmDemGio;
+        private System.Windows.Forms.Button ptbKinhLup;
     }
 }
 

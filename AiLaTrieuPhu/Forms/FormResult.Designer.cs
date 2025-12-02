@@ -41,12 +41,13 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Red;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(70, 76);
+            this.label1.Location = new System.Drawing.Point(51, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(528, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Chúc mừng người chơi đã dành được phần thưởng ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // btnTrangChu
             // 
@@ -72,9 +73,9 @@
             // 
             this.lblTienThuong.BackColor = System.Drawing.Color.Gold;
             this.lblTienThuong.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTienThuong.Location = new System.Drawing.Point(150, 156);
+            this.lblTienThuong.Location = new System.Drawing.Point(124, 139);
             this.lblTienThuong.Name = "lblTienThuong";
-            this.lblTienThuong.Size = new System.Drawing.Size(314, 23);
+            this.lblTienThuong.Size = new System.Drawing.Size(388, 40);
             this.lblTienThuong.TabIndex = 4;
             this.lblTienThuong.Text = "label2";
             this.lblTienThuong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,7 +84,7 @@
             // 
             this.lblThoiGian.BackColor = System.Drawing.Color.Gold;
             this.lblThoiGian.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThoiGian.Location = new System.Drawing.Point(207, 236);
+            this.lblThoiGian.Location = new System.Drawing.Point(216, 237);
             this.lblThoiGian.Name = "lblThoiGian";
             this.lblThoiGian.Size = new System.Drawing.Size(202, 23);
             this.lblThoiGian.TabIndex = 5;
@@ -109,7 +110,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::AiLaTrieuPhu.Properties.Resources.hq720;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(623, 383);
+            this.ClientSize = new System.Drawing.Size(635, 383);
             this.Controls.Add(this.lblThanhTich);
             this.Controls.Add(this.lblThoiGian);
             this.Controls.Add(this.lblTienThuong);

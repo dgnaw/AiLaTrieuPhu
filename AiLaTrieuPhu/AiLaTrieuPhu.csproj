@@ -93,7 +93,6 @@
     <None Include="app.config" />
     <None Include="bin\Debug\AiLaTrieuPhu.exe.config" />
     <None Include="bin\Debug\AiLaTrieuPhu.vshost.exe.manifest" />
-    <None Include="data\cauhoi.laccdb" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -580,14 +579,8 @@
     <Content Include="bin\Debug\Audio\vuot10.mp3" />
     <Content Include="bin\Debug\Audio\vuot5.mp3" />
     <Content Include="bin\Debug\Audio\vuotcuoi.mp3" />
-    <Content Include="bin\Debug\bin\Debug\Data\cauhoi.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="bin\Debug\Data\cauhoi.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\cauhoi.accdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\shield.png" />
     <None Include="Resources\search.png" />
